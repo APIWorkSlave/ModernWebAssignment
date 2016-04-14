@@ -1,0 +1,86 @@
+<!DOCTYPE html> 
+<html>
+<head>
+<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>jQuery Mobile: Theme Download</title>
+	<link rel="stylesheet" href="../themes/ThemeDiedrich.min.css" />
+	<link rel="stylesheet" href="../themes/jquery.mobile.icons.min.css" />
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
+	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+</head> 
+<script>
+
+        $(document).ready(function() {
+			$("#bmbtn").click(function addFav() {
+			    var URLs="../addFav/";
+         	   	var myData = "Field=drug_cocaine";	
+				//alert(myData);			
+			 	$.ajax({
+                	url: URLs,
+                	data: myData,
+					type:"POST",
+					dataType:'text',
+
+               		success: function(msg){
+					//alert(msg);					
+					if (msg=='Added to bookmark!')
+						{
+							alert(msg);							
+              	  	}else if(msg=='Item already exists.'){
+							alert(msg);
+						}else if(msg=='Please login first.'){
+							alert(msg);
+							var r = confirm("Would you like to login now?");
+							if (r==true){
+								window.location.href="../login";
+							}
+						}
+					
+              	  	},
+
+              	 	error:function(xhr, ajaxOptions, thrownError){
+                 	   alert(xhr.status);
+               	 	   alert(thrownError);
+              	   }
+         	  	 });
+			
+			});
+		});
+		
+</script>
+<body> 
+
+<div data-role="page" id="page">
+	<div data-role="header">
+		<h4>Welcome to Understanding Drugs</h4>
+	</div>
+	<div data-role="content">	
+		<ul data-role="listview">
+        	<h2>Cocaine</h2>
+            <img src="../img/cocaine.jpg" alt="cocaine" width="320" height="240" >
+            <hr>
+            <p>Cocaine, a.k.a coke, is a strong stimulant mostly used as a recreational drug. It is commonly snorted, inhaled, or injected into the veins. Mental effects may include loss of contact with reality, an intense feeling of happiness, or agitation. Physical symptons may include a fast heart rate, sweating and large pupils. High doses can result in very high blood pressure or body temperature. Effects begin within seconds to minutes of use and last between five to ninety minutes. Although it sounds dangerous, it has a small number of accepted medical users such as numbing and decreasing bleeding during nasal surgery.</p>
+            <hr>            
+            <div id="wrapV">
+            <h3>Learn more about Cocaine</h3>
+            <iframe id="player" src="https://www.youtube.com/embed/iunRzPP7NVw?enablejsapi=1&origin=http://example.com"></iframe>
+            
+            </div>
+            <hr>
+            <input type="submit" name="bookMark" id="bmbtn" value="Add to bookmark">
+            <hr>
+            <li><a href="../SearchFilter" rel="external">To Category Page</a></li>
+			
+		</ul>		
+	</div>
+	<div data-role="footer">
+		<h4><a href="../index" rel="external">Home</a></h4>
+	</div>
+</div>
+
+
+
+</body>
+</html>

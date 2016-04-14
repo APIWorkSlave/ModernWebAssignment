@@ -1,0 +1,163 @@
+<!DOCTYPE html> 
+<html>
+<head>
+<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>jQuery Mobile: Theme Download</title>
+	<link rel="stylesheet" href="themes/ThemeDiedrich.min.css" />
+	<link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
+	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+</head> 
+
+////////////////
+//Login script//
+////////////////
+ <script>
+
+        $(document).ready(function() {
+			$("#loginbtn").click(function() {
+			    var URLs="login/";
+          
+				var userid=$("#login_username_textbox").val();
+				var pwd=$("#login_password_textbox").val();
+         	   	var myData = "lusername="+ userid + "&lpassword=" + pwd;				
+			 	//alert(myData);
+				$.ajax({
+                	url: URLs,
+                	data: myData,
+					type:"POST",
+					dataType:'text',
+
+               		success: function(msg){	
+					//alert(msg);			
+					if (msg=='true')
+						{
+							alert("Welcome " + userid +"!");
+							window.location.href="members";
+              	  	}else if(msg=='Field(s) is empty'){
+							alert(msg);//do nothing
+						}else if (msg=="Username does not exists."){
+							alert(msg);
+						}else{
+							alert("Invalid password.");
+							}
+					
+              	  	},
+
+              	 	error:function(xhr, ajaxOptions, thrownError){
+                 	   alert(xhr.status);
+               	 	   alert(thrownError);
+              	   }
+         	  	 });
+			
+			});
+		});
+		
+</script>
+//Check login status script 
+<script>
+$(document).ready(function chkLogin() 
+{
+    $.ajax(
+    {
+        url: "checkLogin/",
+		data: "",
+		type: "POST",
+    	success: function(msg){
+								
+					if (msg=='Redirecting you to members area...')
+						{					
+							alert(msg);	
+							window.location.href="members";
+              	  	}else{							
+							//do nothing
+						}
+					
+              	  	},
+
+              	 	error:function(xhr, ajaxOptions, thrownError){
+                 	   alert(xhr.status);
+               	 	   alert(thrownError);
+              	   }
+         	  	 });
+			
+			});
+</script>
+//Check login status onclick script. Check for login status just in case the above script does not work.
+<script>
+
+$(document).ready(function() {
+			$("#membersbtn").click(function check() {
+			    var URLs="checkLogin/";
+          
+         	   	var myData = "";				
+			 	$.ajax({
+                	url: URLs,
+                	data: myData,
+					type:"POST",
+					dataType:'text',
+
+               		success: function(msg){
+				
+					if (msg!='Redirecting you to members area...')
+						{		
+							alert("Please login first.");
+							
+              	  	}else{
+						window.location.href="members";
+					}
+					
+              	  	},
+
+              	 	error:function(xhr, ajaxOptions, thrownError){
+                 	   alert(xhr.status);
+               	 	   alert(thrownError);
+              	   }
+         	  	 });
+			
+			});
+		});
+		
+</script>
+
+<body> 
+
+<div data-role="page" id="page" data-add-back-btn="true">
+	<div data-role="header">
+		<h1>Login</h1>
+	</div>
+	<div data-role="content">
+	  <p>Login:
+	    <label for="login_textbox"></label>
+	  </p>
+	    <p>
+	      <label for="login_username_textbox"></label>
+	      <input type="text" name="lusername" id="login_username_textbox">
+        </p>
+	    <p>Password:</p>
+	    <p>
+	      <label for="login_password_textbox"></label>
+	      <input type="text" name="lpassword" id="login_password_textbox">
+	    </p>
+	    <p>
+	      <input type="submit" name="loginbtn" id="loginbtn" value="Login">
+	    </p>
+	    <p><a href="register" rel="external">
+	      <input type="submit" name="register" id="register" value="Register">
+	    </a></p>
+	    <p>
+	      <input type="submit" name="memberPage" id="membersbtn" value="Members Area">
+	    </p>
+
+<div data-role="footer">
+	  <h2><a href="index" rel="external">Home</a></h2>
+	</div>
+  </div>
+</div>
+
+
+
+</body>
+</html>

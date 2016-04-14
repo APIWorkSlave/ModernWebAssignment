@@ -1,0 +1,53 @@
+<!DOCTYPE html> 
+<?php 
+session_start();
+
+?>
+<html>
+<head>
+<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>jQuery Mobile: Theme Download</title>
+	<link rel="stylesheet" href="themes/ThemeDiedrich.min.css" />
+	<link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
+	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+</head> 
+
+
+<body> 
+
+<div data-role="page" id="pageone">
+<div data-role="header">
+		<h6>Info Category</h6>
+	</div>
+  <div data-role="main" class="ui-content">
+    <h3>Enter keywords or choose from the tabs below</h3>
+    <form class="ui-filterable">
+      <input id="myFilter" data-type="search">
+    </form>
+    <ul data-role="listview" data-filter="true" data-input="#myFilter" data-autodividers="true" data-inset="true">
+
+		<li><a href="drug/drug_angelDust" rel="external">Angel Dust</a></li>
+      <li><a href="drug/drug_cannabis" rel="external">Cannabis</a></li>
+      <li><a href="drug/drug_cocaine" rel="external">Cocaine</a></li>
+      <li><a href="drug/drug_cathinone" rel="external">Cathinone</a></li>
+      <li><a href="drug/drug_ecstasy" rel="external">Ecstasy</a></li>
+      <li><a href="drug/drug_heroin" rel="external">Heroin</a></li>
+      <li><a href="drug/drug_ketamine" rel="external">Ketamine</a></li>
+      <li><a href="drug/drug_lsd" rel="external">LSD</a></li>
+      <li><a href="drug/drug_shroom" rel="external">Magic Mushroom</a></li>     
+      <li><a href="drug/drug_meth" rel="external">Methamphetamine</a></li>
+      <li><a href="drug/drug_opium" rel="external">Opium</a></li>
+      <li><a href="drug/drug_salvia" rel="external">Salvia Divinorum</a></li>
+      
+    </ul>
+  </div>
+  <div data-role="footer">
+		<h4><a href="index" rel="external">Home</a></h4>
+	</div>
+</div> 
+
+</body>
+</html>

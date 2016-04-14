@@ -1,0 +1,123 @@
+<!DOCTYPE html> 
+<html>
+<head>
+<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>jQuery Mobile: Theme Download</title>
+	<link rel="stylesheet" href="themes/ThemeDiedrich.min.css" />
+	<link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
+	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+</head>
+
+
+
+///////////////////
+//register script//
+///////////////////
+ <script>
+
+        $(document).ready(function() {
+			$("#registerbtn").click(function() {
+			
+			    var URLs="register/";
+          
+				var userid=$("#userid_textbox").val();
+				var pwdid=$("#password_textbox").val();
+				var emailid=$("#email_textbox").val();
+				
+         	   	var myData = "user="+ userid + "&password=" + pwdid + "&email=" + emailid;	
+				//alert(myData);
+			 	$.ajax({
+                	url: URLs,
+                	data: myData,
+					type:"POST",
+					dataType:'text',
+
+               		success: function(msg){
+					
+					if (msg=='Account created.')
+					{						
+						alert(msg);
+						window.location.href="login";
+              	  	}else{
+						alert(msg);
+						}
+					},
+
+              	 	error:function(xhr, ajaxOptions, thrownError){
+                 	   alert(xhr.status);
+               	 	   alert(thrownError);
+              	   }
+         	  	 });
+			
+			});
+		});
+		
+</script>
+///////////////////
+//clear field script//
+///////////////////
+<script>
+$(document).ready(function() {
+			$("#clearbtn").click(function() {
+				var x= confirm("Clear all fields for real?");
+				if(x==true){
+					
+			$('#userid_textbox').val("");
+			$('#password_textbox').val("");
+			$('#email_textbox').val("");
+				}else{
+					//do nothing
+				}
+			});	
+		});
+</script>
+
+
+<body> 
+
+<div data-role="page" id="page" data-add-back-btn="true">
+	<div data-role="header">
+    	
+		<h1>Account Creation</h1>
+        
+	</div>
+	<div data-role="content">
+    	
+	  
+      <p>Username:</p>
+	  <p>
+	    <label for="userid_textbox"></label>
+	    <input type="text" name="userid" id="userid_textbox" placeholder="Graf">
+	  </p>
+	    
+	  <p>Password:</p>
+	  <p>
+	    <label for="password_textbox"></label>
+	    <input type="text" name="password" id="password_textbox" placeholder="Von">
+	  </p>
+	  <p>Email:</p>
+	  <p>
+	    <label for="email_textbox"></label>
+	    <input type="text" name="email" id="email_textbox" placeholder="Friedrich@example.com">
+	  </p>
+	  <p>
+	    <input type="submit" name="register" id="registerbtn" value="Create Now">
+      </p>
+        <p>
+	    <input type="submit" name="clear" id="clearbtn" value="Clear All Fields">
+        </p>
+        <p><a href="login" rel="external"><input type="submit" name="register" id="registerbtn" value="Login"></a>
+	  </p>
+     
+	</div>
+	<div data-role="footer">
+	  <h2><a href="index" rel="external">Home</a></h2>
+	</div>
+</div>
+
+
+</body>
+</html>

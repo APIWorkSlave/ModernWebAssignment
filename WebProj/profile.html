@@ -1,0 +1,83 @@
+<!DOCTYPE html> 
+<html>
+<head>
+<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>jQuery Mobile: Theme Download</title>
+	<link rel="stylesheet" href="themes/ThemeDiedrich.min.css" />
+	<link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
+	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+</head>
+<script>
+ $(document).ready(function(){
+        $("#logoutbtn").click(function(){
+				
+            $.ajax({
+                type: 'POST',
+                url: 'userLogout/',
+                success: function(msg) {
+					alert("Logout successful.");
+                    window.location.href="index";
+
+                }
+            });
+   });
+});
+</script>
+//Check login status script 
+<script>
+$(document).ready(function chkLogin() 
+{
+    $.ajax(
+    {
+        url: "checkLogin/",
+    	success: function(msg){
+								
+					if (msg=='Redirecting you to members area...')
+						{					
+							//do nothing
+              	  	}else{							
+						alert("Please login first.");
+						window.location.href="login";
+						}
+					
+              	  	},
+
+              	 	error:function(xhr, ajaxOptions, thrownError){
+                 	   alert(xhr.status);
+               	 	   alert(thrownError);
+              	   }
+         	  	 });
+			
+			});
+</script>
+//back button script
+<script>
+	function goBack() {
+    window.history.back();
+}
+</script>
+<body>
+<div data-role="page" id="page" data-add-back-btn="true">
+<div data-role="header">
+		<h1>Edit Your Profile</h1>
+	</div>
+	<div data-role="content">
+    <ul data-role="listview">
+	  <li><a href="/profile/User" rel="external">Edit Username</a></li>
+      <li><a href="/profile/Pass" rel="external">Edit Password</a></li>
+      <li><a href="/profile/Email" rel="external">Edit Email</a></li>
+      <li><a id="logoutbtn" rel="external">Logout</a></li>
+	</ul>
+    <input  onclick="goBack()" type="submit" name="back" id="backBtn" value="Go back">
+    </div>
+<div data-role="footer">
+		<h4><a href="index" rel="external">Home</a></h4>
+	</div>
+
+
+
+</body>
+</html>

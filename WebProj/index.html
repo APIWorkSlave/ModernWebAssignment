@@ -1,0 +1,57 @@
+<!DOCTYPE html> 
+<html>
+<head>
+<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>jQuery Mobile: Theme Download</title>
+	<link rel="stylesheet" href="themes/ThemeDiedrich.min.css" />
+	<link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
+	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+</head> 
+<script>
+ $(document).ready(function(){
+        $("#logoutli").click(function(){
+				
+            $.ajax({
+                type: 'POST',
+                url: 'userLogout/',
+                success: function(msg) {
+					alert("Logout successful.");
+                    location.reload();
+
+                }
+            });
+   });
+});
+</script>
+<body> 
+
+<div data-role="page" id="page">
+	<div data-role="header">
+		<h6>Welcome to Understanding Drugs</h6>
+	</div>
+	<div data-role="content">	
+		<ul data-role="listview">
+        	<h2>Hello There</h2>
+            <p>	Hello I am Eneme and welcome to this site my friend. I assume you have heard people<br> talking about drugs. Well let's imagine yourself in a scenario where you have a friend who<br> knows nothing about drugs, what are you gonna do? "Oh drugs! Don't take 'em, you eat<br> 'em and you die" This is an example of what a bad answer is. "Oh meh, I know better <br>than that Eneme, don't treat me like I'm a monkey" You might say, but how much do you <br>
+            really know? Before you answer your friend with a bunch of  not-so-sure statement, show <br>your friend this site and let him help himself. :D</p>
+            <h3>Site Functions</h3>
+            <li><a href="register" rel="external">Register</a></li>
+			<li><a href="login" rel="external">Member Area</a></li>
+            <li><a href="SearchFilter" rel="external">Search for Drugs</a></li>
+            <li><a href="message" rel="external">Message Board</a></li>
+            <li id="logoutli"><a href="#logout">Logout</a></li>
+            
+		</ul>		
+	</div>
+	<div data-role="footer">
+		<h4></h4>
+	</div>
+</div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html> 
+<html>
+<head>
+<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>jQuery Mobile: Theme Download</title>
+	<link rel="stylesheet" href="../themes/ThemeDiedrich.min.css" />
+	<link rel="stylesheet" href="../themes/jquery.mobile.icons.min.css" />
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
+	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+</head> 
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script>
+function delfavlist(id){
+			 var URLs="../flist/";
+			 var myData = {"link": id};			 
+			  $.ajax({
+                url: URLs,
+                data: JSON.stringify(myData),
+                type:"DELETE",
+                dataType:'text',
+
+                success: function(msg){					
+                    alert(msg);
+					location.reload();		
+                }
+			  });
+		}
+
+
+        $(document).ready(function () {
+			
+			$.getJSON("../flist_show/", function(data){
+		
+	 $.each(data, function(i, row){
+		 //alert("each "+i);
+        $("#PushItem").append("  :<a href='../drug/" + row.link + "'>" + row.link + "</a> | <a href='javascript:void(0)' onclick='delfavlist(\""+ row.link + "\")'>Delete</a><br><br>");
+		//alert("roger");
+    })
+		})
+		});
+			
+			
+         	  
+			 			
+</script>
+//Check login status script 
+<script>
+$(document).ready(function chkLogin() 
+{
+    $.ajax(
+    {
+        url: "../checkLogin/",
+		data: "",
+		type: "GET",
+    	success: function(msg){
+								
+					if (msg=='Redirecting you to members area...')
+						{					
+							//do nothing
+              	  	}else{							
+						alert("Please login first.");
+						window.location.href="../login";
+						}
+					
+              	  	},
+
+              	 	error:function(xhr, ajaxOptions, thrownError){
+                 	   alert(xhr.status);
+               	 	   alert(thrownError);
+              	   }
+         	  	 });
+			
+			});
+</script>
+//last page script
+<script>
+	function goBack() {
+    window.history.back();
+}
+</script>
+<body> 
+<div data-role="page" id="page">
+	<div data-role="header">
+		<h1>Bookmarks</h1>
+	</div>
+	<div data-role="content">
+	<ul data-role="listview">
+    <hr>
+    <li>Access or delete your bookMarks.</li>
+    <hr>
+    </ul>
+     <p>
+     
+        <div id="PushItem"><br>
+		
+ 		 </div>
+         <div>
+         <input  onclick="goBack()" type="submit" name="back" id="backBtn" value="Go back">
+         </div>
+</p>
+	<div data-role="footer">
+		<h4><a href="../index" rel="external">Home</a></h4>
+	</div>
+</div>
+</div>
+
+	</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html> 
+<html>
+<head>
+<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>jQuery Mobile: Theme Download</title>
+	<link rel="stylesheet" href="themes/ThemeDiedrich.min.css" />
+	<link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
+	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+</head> 
+
+/////////////////
+//Logout script//
+/////////////////
+ <script>
+ $(document).ready(function(){
+        $("#logoutbtn").click(function(){
+				
+            $.ajax({
+                type: 'POST',
+                url: 'userLogout/',
+                success: function(msg) {
+					alert("Logout successful.");
+                    window.location.href="index";
+
+                }
+            });
+   });
+});
+</script>
+
+
+
+
+<body> 
+
+<div data-role="page" id="page" data-add-back-btn="true">
+	<div data-role="header">
+		<h1>Members Area c:</h1>
+	</div>
+	<div data-role="content">
+    <ul data-role="listview">
+	  <li><a href="profile" rel='external'>Edit Profile</a></li>
+      <li><a href="message" rel="external">Message Board</a></li>
+      <li><a href="myBookmark" rel="external">My Bookmark</a></li>
+      <li><a href="SearchFilter" rel="external">Search</a></li>
+      <input type="submit" name="logout" id="logoutbtn" value="Logout">
+	</ul>
+    </div>
+    <div data-role="footer">
+		<h4><a href="index" rel="external">Home</a></h4>
+	</div>
+
+
+
+
+</body>
+</html>

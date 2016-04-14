@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>jQuery Mobile: Theme Download</title>
+	<link rel="stylesheet" href="../themes/ThemeDiedrich.min.css" />
+	<link rel="stylesheet" href="../themes/jquery.mobile.icons.min.css" />
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
+	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+</head> 
+<script>
+
+        $(document).ready(function() {
+			$("#chgBtn").click(function() {
+				
+			    var URLs="../updateUser/";
+				var usn=$("#NewUser").val();
+         	   	var Data = "usn="+usn;	
+				//alert(Data);
+			 	$.ajax({
+                	url: URLs,
+                	data: Data,
+					type:"PUT",
+					dataType:'text',
+
+               		success: function(msg){
+					alert(msg);
+					$("#NewUser").val("");
+					location.reload();
+					},
+					
+
+              	 	error:function(xhr, ajaxOptions, thrownError){
+                 	   alert(xhr.status);
+               	 	   alert(thrownError);
+              	   }
+         	  	 });
+			
+			});
+		});
+		
+</script>
+
+//Check login status script 
+<script>
+$(document).ready(function() 
+{
+    $.ajax(
+    {
+        url: "../checkLogin/",
+		data: "",
+		type: "GET",
+    	success: function(msg){
+								
+					if (msg=='Redirecting you to members area...')
+						{					
+							//do nothing
+              	  	}else{							
+						alert("Please login first.");
+						window.location.href="../login";
+						}
+					
+              	  	},
+
+              	 	error:function(xhr, ajaxOptions, thrownError){
+                 	   alert(xhr.status);
+               	 	   alert(thrownError);
+              	   }
+         	  	 });
+			
+			});
+</script>
+//Get current username script
+<script>
+function getName() 
+{
+	
+    $.ajax(
+    {
+        url: "../getName/",
+		data: "",
+		type: "GET",
+    	success: function(msg){							
+					$("#DisplayName").append(" "+msg);
+              	  	},
+              	 	error:function(xhr, ajaxOptions, thrownError){
+                 	   alert(xhr.status);
+               	 	   alert(thrownError);
+              	   }
+         	  	 });
+			
+			};
+</script>
+//back button script
+<script>
+	function goBack() {
+    window.history.back();
+}
+</script>
+<body onload="getName()">
+<div data-role="page" id="page" data-add-back-btn="true">
+	<div data-role="header">
+		<h1>Change Username</h1>
+	</div>
+	<div data-role="content">
+    <hr>
+    <div id="DisplayName">Current username: 
+    </div>
+    <hr>
+    	<input name="NewUser" type="text" value="" id="NewUser" placeholder="Enter your new name here...">
+        <br>
+    
+	  <input type="submit" name="chgBtn" id="chgBtn" value="Change"><br />
+      <input  onclick="goBack()" type="submit" name="back" id="backBtn" value="Go back">
+      
+      
+    </div>
+    <div data-role="footer">
+		<h4><a href="index" rel="external">Home</a></h4>
+	</div>
+</body>
+</html>

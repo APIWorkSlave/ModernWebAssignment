@@ -1,0 +1,95 @@
+<!DOCTYPE html> 
+<html>
+<head>
+<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>jQuery Mobile: Theme Download</title>
+	<link rel="stylesheet" href="../themes/ThemeDiedrich.min.css" />
+	<link rel="stylesheet" href="../themes/jquery.mobile.icons.min.css" />
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
+	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+</head> 
+//add to bookmark script.
+<script>
+
+        $(document).ready(function() {
+			$("#bmbtn").click(function addFav() {
+			    var URLs="../addFav/";
+         	   	var myData = "Field=drug_lsd";	
+				//alert(myData);			
+			 	$.ajax({
+                	url: URLs,
+                	data: myData,
+					type:"POST",
+					dataType:'text',
+
+               		success: function(msg){
+					//alert(msg);					
+					if (msg=='Added to bookmark!')
+						{
+							alert(msg);							
+              	  	}else if(msg=='Item already exists.'){
+							alert(msg);
+						}else if(msg=='Please login first.'){
+							alert(msg);
+							var r = confirm("Would you like to login now?");
+							if (r==true){
+								window.location.href="../login";
+							}
+						}
+					
+              	  	},
+
+              	 	error:function(xhr, ajaxOptions, thrownError){
+                 	   alert(xhr.status);
+               	 	   alert(thrownError);
+              	   }
+         	  	 });
+			
+			});
+		});
+		
+</script>
+///////////////////////////////////
+/*iframe id="player" src="https://www.youtube.com/embed/Jv9mQ2mWk7s?enablejsapi=1&origin=http://example.com"></iframe>
+To embed a video, change the "v9mQ2mWk7s" with utube video code in url
+*/
+<body> 
+
+<div data-role="page" id="page">
+	<div data-role="header">
+		<h4>Welcome to Understanding Drugs</h4>
+	</div>
+	<div data-role="content">	
+		<ul data-role="listview">
+        	<h2>LSD</h2>
+            <img src="../img/lsd.jpg" alt="source:http://i1.mirror.co.uk/"width="320" height="240"  >
+            <hr>
+            <p>LSD is one of the most potent, mood-changing chemicals. It is manufactured from lysergic acid, which is found in the ergot fungus that grows on rye and other grains.</p>
+            <p>It is produced in crystal form in illegal laboratories, mainly in the United States. These crystals are converted to a liquid for distribution. It is odorless, colorless, and has a slightly bitter taste.</p>
+            <p>Known as &ldquo;acid&rdquo; and by many other names, LSD is sold on the street in small tablets (&ldquo;microdots&rdquo;), capsules or gelatin squares (&ldquo;window panes&rdquo;). It is sometimes added to absorbent paper, which is then divided into small squares decorated with designs or cartoon characters (&ldquo;loony toons&rdquo;). Occasionally it is sold in liquid form. But no matter what form it comes in, LSD leads the user to the same place—a serious disconnection from reality.</p>
+            <p>LSD users call an LSD experience a &ldquo;trip,&rdquo; typically lasting twelve hours or so. When things go wrong, which often happens, it is called a &ldquo;bad trip,&rdquo; another name for a living hell.</p>
+            <hr>
+            <div id="wrapV">
+            <h3>Learn more about LSD</h3>
+            <iframe id="player" src="https://www.youtube.com/embed/OIfk6M7k77U?enablejsapi=1&origin=http://example.com"></iframe>
+            
+            </div>
+            <hr>
+            <input type="submit" name="bookMark" id="bmbtn" value="Add to bookmark">
+            <hr>
+            <li><a href="../SearchFilter" rel="external">To Category Page</a></li>
+			
+		</ul>		
+	</div>
+	<div data-role="footer">
+		<h4><a href="../index" rel="external">Home</a></h4>
+	</div>
+</div>
+
+
+
+</body>
+
+</html>

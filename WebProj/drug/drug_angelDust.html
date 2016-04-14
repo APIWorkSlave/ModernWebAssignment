@@ -1,0 +1,94 @@
+<!DOCTYPE html> 
+<html>
+<head>
+<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>jQuery Mobile: Theme Download</title>
+	<link rel="stylesheet" href="../themes/ThemeDiedrich.min.css" />
+	<link rel="stylesheet" href="../themes/jquery.mobile.icons.min.css" />
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
+	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+</head> 
+//add to bookmark script.
+<script>
+
+        $(document).ready(function() {
+			$("#bmbtn").click(function addFav() {
+			    var URLs="../addFav/";
+         	   	var myData = "Field=drug_angelDust";	
+				//alert(myData);			
+			 	$.ajax({
+                	url: URLs,
+                	data: myData,
+					type:"POST",
+					dataType:'text',
+
+               		success: function(msg){
+					//alert(msg);					
+					if (msg=='Added to bookmark!')
+						{
+							alert(msg);							
+              	  	}else if(msg=='Item already exists.'){
+							alert(msg);
+						}else if(msg=='Please login first.'){
+							alert(msg);
+							var r = confirm("Would you like to login now?");
+							if (r==true){
+								window.location.href="../login";
+							}
+						}
+					
+              	  	},
+
+              	 	error:function(xhr, ajaxOptions, thrownError){
+                 	   alert(xhr.status);
+               	 	   alert(thrownError);
+              	   }
+         	  	 });
+			
+			});
+		});
+		
+</script>
+///////////////////////////////////
+/*iframe id="player" src="https://www.youtube.com/embed/Jv9mQ2mWk7s?enablejsapi=1&origin=http://example.com"></iframe>
+To embed a video, change the "v9mQ2mWk7s" with utube video code in url
+*/
+<body> 
+
+<div data-role="page" id="page">
+	<div data-role="header">
+		<h4>Welcome to Understanding Drugs</h4>
+	</div>
+	<div data-role="content">	
+		<ul data-role="listview">
+        	<h2>Phencylidine</h2>
+            <img src="../img/dust.jpg" alt="source:http://d3819ii77zvwic.cloudfront.net/"width="320" height="240"  >
+            <hr>
+            <p><strong>Phencyclidine</strong> (<strong>PCP</strong>), also known as <strong>angel dust</strong> and <strong>Sernyl</strong> among others, is a dissociative drug. PCP was brought to market in the 1950s as an anesthetic pharmaceutical drug but was taken off the market in 1965 due to the high prevalence of dissociative hallucinogenic side effects. Likewise, ketamine was discovered by Parke-Davis researchers as a better-tolerated derivative for use as an anesthetic pharmaceutical drug. Since this time a number of synthetic derivatives of PCP have been sold as dissociative drugs for recreational and non-medical use.</p>
+            <p>In chemical structure, PCP is a member of the arylcyclohexylamine class, and, in pharmacology, it is a member of the family of dissociative anesthetics. PCP works primarily as an NMDA receptor antagonist, where it blocks the activity of the NMDA receptor. As an addictive drug, PCP is associated with compulsive abuse.</p>
+            <p>As a recreational drug, PCP may be ingested orally, smoked, insufflated or injected.</p>
+            <hr>
+            <div id="wrapV">
+            <h3>Learn more about Phencyclidine</h3>
+            <iframe id="player" src="https://www.youtube.com/embed/wLZq5GGPxws?enablejsapi=1&origin=http://example.com"></iframe>
+            
+            </div>
+            <hr>
+            <input type="submit" name="bookMark" id="bmbtn" value="Add to bookmark">
+            <hr>
+            <li><a href="../SearchFilter" rel="external">To Category Page</a></li>
+			
+		</ul>		
+	</div>
+	<div data-role="footer">
+		<h4><a href="../index" rel="external">Home</a></h4>
+	</div>
+</div>
+
+
+
+</body>
+
+</html>

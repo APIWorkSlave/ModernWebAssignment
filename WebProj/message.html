@@ -1,0 +1,132 @@
+<!DOCTYPE html> 
+<html>
+<head>
+<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>jQuery Mobile: Theme Download</title>
+	<link rel="stylesheet" href="themes/ThemeDiedrich.min.css" />
+	<link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
+	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+</head> 
+<script>
+//Generate Random greeting texts
+			var greetArray= new Array ("Sakamoto-kun knows all kinds of drugs.","We will not show you the Sad Panda when searching for drugs on our site","WHAT THE BOOOOOOOOOOOOOOM!","The admin suspects you have yet to login.","Look at the messages above, I think I know why the aliens don't talk to us now.");
+			$(document).ready(function RndTxt() {
+				var rndNum=Math.floor(Math.random()*greetArray.length);
+				document.getElementById('Greet').innerHTML=greetArray[rndNum];
+				document.getElementById('Greet2').innerHTML=greetArray[rndNum];
+			});
+
+</script>
+
+<script>
+//Push comment script
+$(document).ready(function Push() {
+	
+	$.getJSON("commentShow/", function(data){
+		
+	 $.each(data, function(i, row){
+        $("#PushComment").append("Comment [ "+i+" ]:"+" Posted by "+ row.username +"<br>"+ row.blabber + "<hr>");
+    })
+		
+		});
+	
+	
+	
+		
+		$("#submitbtn").click(function() {
+
+		
+		 var URLs="comments/";
+          
+		    var blabber=$("#comment").val();
+
+  		    var name=$("#usn").val();
+			//alert("debug msg(1): "+blabber);
+			
+            var myData = "blabber="+ blabber + "&name=" + name; 
+			//alert("debug my data: "+myData);
+		//build a post data structure
+
+            $.ajax({
+                url: URLs,
+                data: myData,
+                type:"POST",
+                dataType:'text',
+
+                success: function(msg){
+                    alert(msg);		
+					location.reload();
+                },
+				
+                 error:function(xhr, ajaxOptions, thrownError){
+                    alert(xhr.status);
+                    alert(thrownError);
+					location.reload();
+                 }
+            });
+   
+});
+
+});
+
+/*
+<p>
+        <label for="username">Your name:</label>   
+       </p>
+        <p>
+         <input type="text" name="username" id="usn">
+        </p>
+		*/
+
+       
+        </script>
+        
+        
+      
+        
+        
+        
+<body> 
+
+<div data-role="page" id="page">
+	<div data-role="header">
+		<h1>Message Board</h1>
+	</div>
+    	<div data-role="content">
+        <h3>ATTENTION!</h3>
+		<p>This is the Message board for you to leave messages related to drugs<br>(Well I can't blame you if you go off topic, but don't go off topic 24/7 pl0x)<br> <a href="#BottomPage" rel="external">Click here</a> to go the bottom to leave a comment.<br>
+        </p>
+        <hr>
+        <hr>
+	    <label for="comment" id="Greet"></label>
+	    <p> 
+        <div id="PushComment">
+        <hr>
+        <hr>
+ 		 </div>
+		</p>
+
+		<p>
+
+	      <label for="comment" id="Greet2"></label><br>
+	    </p>
+	    <p id="BottomPage">
+	      <input type="text" name="comment" id="comment" placeholder="Lorem Ipman c:">
+	    </p>
+        
+        
+	    <p>
+	      <input type="submit" name="comments_submit" id="submitbtn" value="Pomf (´･д･｀)ﾊ(･д･｀*)">
+	    </p>
+    </div>
+    
+	<div data-role="footer">
+		<h4><a href="index" rel="external">Home</a></h4>
+	</div>
+</div>
+
+</body>
+</html>

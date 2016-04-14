@@ -1,0 +1,93 @@
+<!DOCTYPE html> 
+<html>
+<head>
+<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>jQuery Mobile: Theme Download</title>
+	<link rel="stylesheet" href="../themes/ThemeDiedrich.min.css" />
+	<link rel="stylesheet" href="../themes/jquery.mobile.icons.min.css" />
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
+	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+</head> 
+//add to bookmark script.
+<script>
+
+        $(document).ready(function() {
+			$("#bmbtn").click(function addFav() {
+			    var URLs="../addFav/";
+         	   	var myData = "Field=drug_salvia";	
+				//alert(myData);			
+			 	$.ajax({
+                	url: URLs,
+                	data: myData,
+					type:"POST",
+					dataType:'text',
+
+               		success: function(msg){
+					//alert(msg);					
+					if (msg=='Added to bookmark!')
+						{
+							alert(msg);							
+              	  	}else if(msg=='Item already exists.'){
+							alert(msg);
+						}else if(msg=='Please login first.'){
+							alert(msg);
+							var r = confirm("Would you like to login now?");
+							if (r==true){
+								window.location.href="../login";
+							}
+						}
+					
+              	  	},
+
+              	 	error:function(xhr, ajaxOptions, thrownError){
+                 	   alert(xhr.status);
+               	 	   alert(thrownError);
+              	   }
+         	  	 });
+			
+			});
+		});
+		
+</script>
+///////////////////////////////////
+/*iframe id="player" src="https://www.youtube.com/embed/Jv9mQ2mWk7s?enablejsapi=1&origin=http://example.com"></iframe>
+To embed a video, change the "v9mQ2mWk7s" with utube video code in url
+*/
+<body> 
+
+<div data-role="page" id="page">
+	<div data-role="header">
+		<h4>Welcome to Understanding Drugs</h4>
+	</div>
+	<div data-role="content">	
+		<ul data-role="listview">
+        	<h2>Salvia Divinorum</h2>
+            <img src="../img/salvia.jpg" alt="source:http://3.bp.blogspot.com/"width="320" height="240"  >
+            <hr>
+            <p>Salvia divinorum, or Sacred Weed, is a psychoactive mint, used in traditional spiritual practices by the Mazatec people of Mexico and is legal in both Mexico and the United States. However, three states have banned the leafy green, making its possession — like that of heroin or cocaine — a felony.</p>
+            <p>Salvinorin-A, the active property of salvia divinorum, is considered to be the most potent, selective and naturally occurring hallucinogen when smoked —  rivaling the potency of the synthetic hallucinogens like LSD.</p>
+            <hr>
+            <div id="wrapV">
+            <h3>Learn more about Salvia divinorum</h3>
+            <iframe id="player" src="https://www.youtube.com/embed/ul20nfzElfU?enablejsapi=1&origin=http://example.com"></iframe>
+            
+            </div>
+            <hr>
+            <input type="submit" name="bookMark" id="bmbtn" value="Add to bookmark">
+            <hr>
+            <li><a href="../SearchFilter" rel="external">To Category Page</a></li>
+			
+		</ul>		
+	</div>
+	<div data-role="footer">
+		<h4><a href="../index" rel="external">Home</a></h4>
+	</div>
+</div>
+
+
+
+</body>
+
+</html>
